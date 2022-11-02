@@ -1,7 +1,7 @@
 ## INGRID-KG
 Graffiti ist ein urbanes Phänomen, das zunehmend auch das Interesse der Wissenschaften auf sich zieht. Für eine systematische Erforschung fehlten bisher geeignete Datenkorpora. Das „Informationssystem Graffiti in Deutschland“ (INGRID) schließt diese Lücke: Graffiti-Bildbestände, die dem Projekt für die ausschließlich wissenschaftliche Nutzung zur Verfügung gestellt wurden, werden digitalisiert, annotiert und der wissenschaftlichen Forschung zugänglich gemacht. Der Aufbau des Informationssystems INGRID wurde von der Deutschen Forschungsgemeinschaft gefördert (01.04.2016–30.06.2019). Die zweite Projektphase, die ebenfalls von der Deutschen Forschungsgemeinschaft gefördert wird, ist zum 01.07.2020 gestartet.
 
-### We list some results we rtirieved from INGRID Sarql [endpoint](https://graffiti.data.dice-research.org/sparql/) to explore our INGRID-KG.
+### We list some results we retrieved from INGRID Sarql [endpoint](https://graffiti.data.dice-research.org/sparql/) to explore our INGRID-KG.
 The [number of triples](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=select+distinct+%3FConcept+where+%7B%5B%5D+a+%3FConcept%7D+LIMIT+100&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 can be retrieved
 using this query: 
