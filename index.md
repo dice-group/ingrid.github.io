@@ -1,7 +1,7 @@
 ## INGRID-KG
 INGRID- KG is an RDF knowledge graph of annotated graffiti, abides by the Linked Data and FAIR principles. Graffiti is an urban phenomenon that is increasingly attracting the interest of the sciences.
 
-### We list some results we retrieved from INGRID Sarql [endpoint](https://graffiti.data.dice-research.org/sparql/) to explore our INGRID-KG.
+### We list some results we retrieved from INGRID SPARQL [endpoint](https://graffiti.data.dice-research.org/sparql/) to explore our INGRID-KG.
 The [number of triples](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=select+distinct+%3FConcept+where+%7B%5B%5D+a+%3FConcept%7D+LIMIT+100&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 can be retrieved
 using this query: 
