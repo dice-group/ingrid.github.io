@@ -12,7 +12,7 @@ INGRID-KG is publicly available under the **Creative Commons Attribution 4.0 Int
 
 ### A list of SPARQL queries from the [INGRID-KG endpoint](https://graffiti.data.dice-research.org/sparql/).
 
-[Count the number of triples?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=select+distinct+%3FConcept+where+%7B%5B%5D+a+%3FConcept%7D+LIMIT+100&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+): 
+[Count the number of triples?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=select+distinct+%3FConcept+where+%7B%5B%5D+a+%3FConcept%7D+LIMIT+100&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 
 ```
 SELECT count(*) WHERE {
@@ -29,14 +29,13 @@ SELECT count(distinct(?s)) WHERE{
 ```
 
 [Count the number of properties?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=select+count%28distinct%28%3Fp%29%29%0D%0Awhere%0D%0A%7B%0D%0A%3Fs+%3Fp+%3Fo+.%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
-
 ```
 SELECT count(distinct(?p)) WHERE{
 	?s ?p ?o .
 }
 ```
-[Count the number of objects](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=select+count%28distinct%28%3Fo%29%29%0D%0Awhere%0D%0A%7B%0D%0A%3Fs+%3Fp+%3Fo+.%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
-can be retrieved using this query:
+[Count the number of objects?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=select+count%28distinct%28%3Fo%29%29%0D%0Awhere%0D%0A%7B%0D%0A%3Fs+%3Fp+%3Fo+.%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
+
 ```
 SELECT count(distinct(?o)) WHERE{
 	?s ?p ?o .
@@ -44,7 +43,7 @@ SELECT count(distinct(?o)) WHERE{
 
 ```
 
-[Retrieve a set of 100 random graffiti that were painted by the same crew "AC"](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=%0D%0Aselect+distinct+*+where%0D%0A%7B%3Fs+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2FhasGraffitiSprayerCrew%3E+%0D%0A%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2FAC%3E+.%0D%0A%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2FAC%3E+%0D%0A%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2FhasLongForm%3E+%3Fo.%0D%0A%0D%0A%7D+LIMIT+100%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
+[Retrieve a set of 100 random graffiti that were painted by the same crew _"AC"_](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=%0D%0Aselect+distinct+*+where%0D%0A%7B%3Fs+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2FhasGraffitiSprayerCrew%3E+%0D%0A%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2FAC%3E+.%0D%0A%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2FAC%3E+%0D%0A%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2FhasLongForm%3E+%3Fo.%0D%0A%0D%0A%7D+LIMIT+100%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
