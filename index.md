@@ -15,18 +15,15 @@ INGRID-KG is publicly available under the **Creative Commons Attribution 4.0 Int
 [Count the whole number of triples?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=select+distinct+%3FConcept+where+%7B%5B%5D+a+%3FConcept%7D+LIMIT+100&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+): 
 
 ```
-select count(*)
-where
-{
-    ?s ?p ?o .
+SELECT count(*) WHERE {
+	?s ?p ?o .
 }
 ```
 
 [Count the whole number of resources?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=select+count%28distinct%28%3Fs%29%29%0D%0Awhere%0D%0A%7B%0D%0A%3Fs+%3Fp+%3Fo+.%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 
 ```
-select count(distinct(?s))
-where{
+SELECT count(distinct(?s)) WHERE{
 	?s ?p ?o .
 }
 ```
@@ -34,24 +31,21 @@ where{
 [Count the whole number of properties?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=select+count%28distinct%28%3Fp%29%29%0D%0Awhere%0D%0A%7B%0D%0A%3Fs+%3Fp+%3Fo+.%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 
 ```
-select count(distinct(?p))
-where{
+SELECT count(distinct(?p)) WHERE{
 	?s ?p ?o .
 }
 ```
 [Count the whole number of objects](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=select+count%28distinct%28%3Fo%29%29%0D%0Awhere%0D%0A%7B%0D%0A%3Fs+%3Fp+%3Fo+.%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 can be retrieved using this query:
 ```
-select count(distinct(?o))
-where{
+SELECT count(distinct(?o)) WHERE{
 	?s ?p ?o .
 }
 ```
 [Some label values](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=select+%3Fs+%3Fo%0D%0Awhere%0D%0A%7B%0D%0A++++%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%3Fo+.%0D%0A%7D%0D%0ALimit+10%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 
 ```
-select ?s ?o
-where{
+SELECT ?s ?o WHERE{
     ?s rdfs:label ?o .
 }
 Limit 10
@@ -59,8 +53,7 @@ Limit 10
 [Some data types](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=select+%3Fs+%3Fo%0D%0Awhere%0D%0A%7B%0D%0A++++%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Fo+.%0D%0A%7D%0D%0ALimit+20%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 
 ```
-select ?s ?o
-where{
+SELECT ?s ?o WHERE{
     ?s rdf:type ?o .
 }
 Limit 10
@@ -72,7 +65,7 @@ Limit 10
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select distinct * where{
+SELECT distinct * WHERE{
 	?s grfo:hasGraffitiSprayerCrew grfr:AC .
 	grfr:AC grfo:hasLongForm ?o.
 } 
@@ -85,7 +78,7 @@ LIMIT 100
 PREFIX grfp: <https://graffiti.data.dice-research.org/graffiti#>
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select distinct * where{
+SELECT distinct * where{
 	?s grfo:hasGraffitiSprayerCrew ?crew .
 	?crew a grfo:GraffitiSprayerCrew .
 	?crew rdfs:label "EURO" .
@@ -99,7 +92,7 @@ select distinct * where{
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select distinct * where{
+SELECT distinct * where{
 	?s grfo:hasGraffitiSprayerCrew ?crew .
 	?s grfo:hasItem ?item .
 	FILTER( contains(?item, "?") ) .
@@ -110,7 +103,7 @@ LIMIT 100
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select distinct count( ?s ) as ?cnt where{
+SELECT distinct count( ?s ) as ?cnt where{
 	?s grfo:hasGraffitiSprayerCrew ?crew .
 	?crew a grfo:GraffitiSprayerCrew .
 	?crew rdfs:label ?crewName .
@@ -121,7 +114,7 @@ select distinct count( ?s ) as ?cnt where{
 [How many crew members in a crew?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0ASELECT+DISTINCT+%3Fcrew%2C+count%28+%3FcrewMember+%29+as+%3Fcnt+WHERE%0D%0A%7B%0D%0A%3Fcrew+a+grfo%3ACrewMember+.%0D%0A%3Fcrew+grfo%3AhasCrewMember+%3FcrewMember+.%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 ```
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select distinct ?crew, count( ?crewMember ) as ?cnt WHERE
+SELECT distinct ?crew, count( ?crewMember ) as ?cnt WHERE
 {
 ?crew a grfo:CrewMember .
 ?crew grfo:hasCrewMember ?crewMember .
@@ -131,7 +124,7 @@ select distinct ?crew, count( ?crewMember ) as ?cnt WHERE
 
 ```
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select distinct ?crewMember count(?crew) as ?cnt WHERE{
+SELECT distinct ?crewMember count(?crew) as ?cnt WHERE{
 	?crew a grfo:CrewMember .
 	?crew grfo:hasCrewMember ?crewMember .
 	?crewMember a grfo:CrewMember .
@@ -145,7 +138,7 @@ PREFIX grfp: <https://graffiti.data.dice-research.org/graffiti#>
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
 
-select distinct ?crewMemberLabel (count(?crew) as ?cnt) WHERE{
+SELECT distinct ?crewMemberLabel (count(?crew) as ?cnt) WHERE{
 	?crew a grfo:Crew .
 	?crew grfo:hasCrewMember ?crewMember .
 	?crewMember rdfs:label ?crewMemberLabel.
@@ -158,7 +151,7 @@ ORDER BY desc(?cnt)
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select distinct* WHERE{
+SELECT distinct* WHERE{
 	?crew a grfo:CrewMember .
 	?crew grfo:hasCrewMember grfr:REAL .
 	grfr:REAL grfo:hasLngForm ?crewMemberLabel .
@@ -169,7 +162,7 @@ select distinct* WHERE{
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select distinct ?crewName (count(?graffitiCrew) as ?cnt) WHERE{
+SELECT distinct ?crewName (count(?graffitiCrew) as ?cnt) WHERE{
 	?graffiti grfo:hasGraffitiSprayerCrew ?graffitiCrew .
 	?graffitiCrew rdfs:label ?crewName .
 }
@@ -180,7 +173,7 @@ ORDER BY desc(?cnt)
 [How many graffities painted by each crew?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0Aselect+%3FcrewName+%28count%28%3FgraffitiCrew%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%3FgraffitiCrew+rdfs%3Alabel+%3FcrewName+.%0D%0A%7D%0D%0AGROUP+BY+%3FcrewName%0D%0AORDER+BY+desc%28%3Fcnt%29&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 ```
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select ?crewName (count(?graffitiCrew) as ?cnt) WHERE{
+SELECT ?crewName (count(?graffitiCrew) as ?cnt) WHERE{
 	?graffiti grfo:hasGraffitiSprayerCrew ?graffitiCrew .
 	?graffitiCrew rdfs:label ?crewName .
 }
