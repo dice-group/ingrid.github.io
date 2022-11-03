@@ -48,7 +48,7 @@ where{
 }
 ```
 [Some label values](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=select+%3Fs+%3Fo%0D%0Awhere%0D%0A%7B%0D%0A++++%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%3Fo+.%0D%0A%7D%0D%0ALimit+10%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
-can be retrieved using this query:
+
 ```
 select ?s ?o
 where{
@@ -57,7 +57,7 @@ where{
 Limit 10
 ```
 [Some data types](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=select+%3Fs+%3Fo%0D%0Awhere%0D%0A%7B%0D%0A++++%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Fo+.%0D%0A%7D%0D%0ALimit+20%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
-can be retrieved using this query:
+
 ```
 select ?s ?o
 where{
@@ -177,61 +177,61 @@ GROUP BY ?crewName
 ORDER BY desc(?cnt)
 ```
 
-[How many graffities painted by each crew?]([https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0ASELECT+%3Ftext+%28count%28%3FgraffitiCrew%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%3Fgraffiti+grfo%3AhasItem+%3Ftext+.%0D%0A%3FgraffitiCrew+rdfs%3Alabel+%3FcrewName+.%0D%0A%0D%0A%7D%0D%0Alimit+100%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0Aselect+%3FcrewName+%28count%28%3FgraffitiCrew%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%3FgraffitiCrew+rdfs%3Alabel+%3FcrewName+.%0D%0A%7D%0D%0AGROUP+BY+%3FcrewName%0D%0AORDER+BY+desc%28%3Fcnt%29&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+
+[How many graffities painted by each crew?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0Aselect+%3FcrewName+%28count%28%3FgraffitiCrew%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%3FgraffitiCrew+rdfs%3Alabel+%3FcrewName+.%0D%0A%7D%0D%0AGROUP+BY+%3FcrewName%0D%0AORDER+BY+desc%28%3Fcnt%29&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 ```
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select ?crewName (count(?graffitiCrew) as ?cnt) WHERE
-{
-?graffiti grfo:hasGraffitiSprayerCrew ?graffitiCrew .
-?graffitiCrew rdfs:label ?crewName .
+select ?crewName (count(?graffitiCrew) as ?cnt) WHERE{
+	?graffiti grfo:hasGraffitiSprayerCrew ?graffitiCrew .
+	?graffitiCrew rdfs:label ?crewName .
 }
 GROUP BY ?crewName
 ORDER BY desc(?cnt)
 `
 WHERE {
- select distinct ?graffiti count( ?elem ) AS ?cnt WHERE
+SELECT distinct ?graffiti count( ?elem ) AS ?cnt WHERE
  { ?graffiti grfo:hasSyleElement ?elem }
 }
 ```
-And [avg number of colour per graffiti](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=%0D%0A+%0D%0APREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+%28AVG%28%3Fcnt%29+AS+%3Favg%29%0D%0AWHERE+%7B%0D%0A+SELECT+DISTINCT+%3Fgraffiti+count%28+%3Felem+%29+AS+%3Fcnt+WHERE%0D%0A+%7B+%3Fgraffiti+grfo%3AhasColour+%3Felem+.%7D%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
+
+[Average number of colour per graffiti](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=%0D%0A+%0D%0APREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+%28AVG%28%3Fcnt%29+AS+%3Favg%29%0D%0AWHERE+%7B%0D%0A+SELECT+DISTINCT+%3Fgraffiti+count%28+%3Felem+%29+AS+%3Fcnt+WHERE%0D%0A+%7B+%3Fgraffiti+grfo%3AhasColour+%3Felem+.%7D%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
  ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
 
-select  (AVG(?cnt) AS ?avg)
-WHERE {
- select distinct ?graffiti count(?elem) AS ?cnt WHERE
- { ?graffiti grfo:hasColour ?elem }
+SELECT  (AVG(?cnt) AS ?avg) WHERE {
+	SELECT distinct ?graffiti count(?elem) AS ?cnt WHERE{
+		?graffiti grfo:hasColour ?elem 
+	}
 }
 ```
 [How many graffities has Spanish language](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0A%0D%0ASELECT+DISTINCT+count%28+%3Fgraffiti+%29+AS+%3Fcnt+WHERE%0D%0A%7B+%3Fgraffiti+grfo%3AhasLanguage+%22es+-+Spanisch%22%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+) can be answered by this query:
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select distinct count( ?graffiti ) AS ?cnt WHERE
-{ ?graffiti grfo:hasLanguage "es - Spanisch"}
+SELECT distinct count( ?graffiti ) AS ?cnt WHERE{ 
+	?graffiti grfo:hasLanguage "es - Spanisch"
+}
 ```
 
 We also can retrieve [Graffiti in a specific period of time (how many graffities were recorded between 1998 and 2000 years)](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0A%0D%0ASELECT+DISTINCT+count%28+%3Fgraffiti+%29+AS+%3Fcnt+WHERE%0D%0A%7B+%3Fgraffiti+grfo%3AhasRecordingDate+%3Fdate+.%0D%0AFILTER%28%221998-01-01%22%5E%5Exsd%3Adate+%3C%3D+%3Fdate+%26%26+%3Fdate+%3C+%222000-01-01%22%5E%5Exsd%3Adate%29.%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+) by writing this query:
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select distinct count( ?graffiti ) AS ?cnt WHERE
-{ ?graffiti grfo:hasRecordingDate ?date .
-FILTER("1998-01-01"^^xsd:date <= ?date && ?date < "2000-01-01"^^xsd:date).
+SELECT distinct count( ?graffiti ) AS ?cnt WHERE{ 
+	?graffiti grfo:hasRecordingDate ?date .
+	FILTER("1998-01-01"^^xsd:date <= ?date && ?date < "2000-01-01"^^xsd:date).
 }
 ```
-And the [Graffities filtered by location (city "Essen") and date (between 1998 and 2000 years)](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+DISTINCT+count%28+%3Fgraffiti+%29+AS+%3Fcnt+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasLocation+%3Fcity+.%0D%0A%3Fcity+a+grfo%3ACity+.%0D%0A%3Fcity+rdfs%3Alabel+%22Essen%22+.%0D%0A%3Fgraffiti+grfo%3AhasRecordingDate+%3Fdate+.%0D%0AFILTER%28%221998-01-01%22%5E%5Exsd%3Adate+%3C%3D+%3Fdate+%26%26+%3Fdate+%3C+%222000-01-01%22%5E%5Exsd%3Adate%29.%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
+[Graffities filtered by location (city "Essen") and date (between 1998 and 2000 years)](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+DISTINCT+count%28+%3Fgraffiti+%29+AS+%3Fcnt+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasLocation+%3Fcity+.%0D%0A%3Fcity+a+grfo%3ACity+.%0D%0A%3Fcity+rdfs%3Alabel+%22Essen%22+.%0D%0A%3Fgraffiti+grfo%3AhasRecordingDate+%3Fdate+.%0D%0AFILTER%28%221998-01-01%22%5E%5Exsd%3Adate+%3C%3D+%3Fdate+%26%26+%3Fdate+%3C+%222000-01-01%22%5E%5Exsd%3Adate%29.%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select distinct count( ?graffiti ) AS ?cnt WHERE
-{
-?graffiti grfo:hasLocation ?city .
-?city a grfo:City .
-?city rdfs:label "Essen" .
-?graffiti grfo:hasRecordingDate ?date .
-FILTER("1998-01-01"^^xsd:date <= ?date && ?date < "2000-01-01"^^xsd:date).
+SELECT distinct count( ?graffiti ) AS ?cnt WHERE{
+	?graffiti grfo:hasLocation ?city .
+	?city a grfo:City .
+	?city rdfs:label "Essen" .
+	?graffiti grfo:hasRecordingDate ?date .
+	FILTER("1998-01-01"^^xsd:date <= ?date && ?date < "2000-01-01"^^xsd:date).
 }
 ```
 What is the average number of Colors for all fully annotated Pieces? (Results are with and without carrier medium Hall of Fame)
@@ -243,7 +243,7 @@ PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
 select (AVG(?cnt) AS ?avg)
 WHERE {
-select distinct ?graffiti count( ?elem ) AS ?cnt WHERE{
+SELECT distinct ?graffiti count( ?elem ) AS ?cnt WHERE{
  		?graffiti grfo:hasColour ?elem ;
        			grfo:hasType "Piece/Writing/Style" ;
        			grfo:hasCarrierMedium "Hall of Fame".
@@ -256,7 +256,7 @@ PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
 select   (AVG(?cnt) AS ?avg)
 WHERE {
-select distinct  ?graffiti count( ?elem ) AS ?cnt WHERE{
+SELECT distinct  ?graffiti count( ?elem ) AS ?cnt WHERE{
  		?graffiti grfo:hasColour ?elem ;
        		grfo:hasType "Piece/Writing/Style".
 FILTER NOT EXISTS { ?graffiti grfo:hasCarrierMedium "Hall of Fame"} .
@@ -269,10 +269,9 @@ To [show every Graffiti with only one name in the field SPRÜHER that has an emb
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select ?s (COUNT(?s) AS ?count)
-WHERE {
-?s grfo:hasGraffitiSprayerCrew ?o ;
-     grfo:hasEmbeddedGraffiti "Signatur/en".
+SELECT ?s (COUNT(?s) AS ?count) WHERE {
+	?s grfo:hasGraffitiSprayerCrew ?o ;
+	grfo:hasEmbeddedGraffiti "Signatur/en".
 }
 GROUP BY ?s
 HAVING (COUNT(?s) = 1)
@@ -281,7 +280,7 @@ And to [show every City or area (postal code) in which a sprayer painted a Graff
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select distinct ?name (?plz)
+SELECT distinct ?name (?plz)
 WHERE {
   ?g  grfo:hasPostalCode ?plz ;
   	grfo:hasGraffitiSprayerCrew ?crow .
@@ -305,13 +304,12 @@ ORDER BY DESC (?count)
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select COUNT(?g) ?plz
-WHERE {
-    ?g  grfo:postalCode ?plz ;
-  	grfo:hasGraffitiSprayerCrew grfr:GISMO .
+SELECT COUNT(?g) ?plz WHERE {
+	?g  grfo:postalCode ?plz ;
+    	    grfo:hasGraffitiSprayerCrew grfr:GISMO .
 }
 ```
-To show the period of time in which a sprayer painted Graffitis (use the recording date) with the longest period for a sprayer in the DB
+Show the period of time in which a sprayer painted each graffitis (useing the recording date) with the longest period for a sprayer in the knowledge graph
 
 1. [For the GISMO crew](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+%3FMinDate+%3FMaxDate+%3Fyears%0D%0AWHERE+%7B%0D%0A++%7B%0D%0A+++SELECT+DISTINCT+min%28%3Fdate%29+AS+%3FMinDate+max%28%3Fdate%29+AS+%3FMaxDate+WHERE%7B%0D%0A+%09%3Fg+grfo%3AhasRecordingDate+%3Fdate+%3B%0D%0A++++%09+++grfo%3AhasGraffitiSprayerCrew+grfr%3AGISMO+.%0D%0A+++%7D%0D%0A++%7D%0D%0A++bind%28+year%28%3FMaxDate%29+-+year%28%3FMinDate%29++-+if%28month%28%3FMaxDate%29%3Cmonth%28%3FMinDate%29+%7C%7C+%28month%28%3FMaxDate%29%3Dmonth%28%3FMinDate%29+%26%26+day%28%3FMaxDate%29%3Cday%28%3FMinDate%29%29%2C1%2C0%29+as+%3Fyears+%29%0D%0A+%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 ```
@@ -320,7 +318,7 @@ PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
 select ?MinDate ?MaxDate ?years
 WHERE {
   {
-   select distinct min(?date) AS ?MinDate max(?date) AS ?MaxDate WHERE{
+   SELECT distinct min(?date) AS ?MinDate max(?date) AS ?MaxDate WHERE{
  	?g grfo:hasRecordingDate ?date ;
     	   grfo:hasGraffitiSprayerCrew grfr:GISMO .
    }
@@ -332,15 +330,12 @@ WHERE {
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select ?crow ?MinDate ?MaxDate ?Years
-WHERE {
-  {
-	select distinct ?crow min(?date) AS ?MinDate max(?date) AS ?MaxDate WHERE{
-  	?g grfo:hasRecordingDate ?date ;
-     	   grfo:hasGraffitiSprayerCrew ?crow .
+SELECT ?crow ?MinDate ?MaxDate ?Years WHERE{
+	SELECT distinct ?crow min(?date) AS ?MinDate max(?date) AS ?MaxDate WHERE{
+  		?g grfo:hasRecordingDate ?date ;
+		grfo:hasGraffitiSprayerCrew ?crow .
 	}
-  }
-  bind( year(?MaxDate) - year(?MinDate)  - if(month(?MaxDate)<month(?MinDate) || (month(?MaxDate)= month(?MinDate) && day(?MaxDate)<day(?MinDate)),1,0) as ?Years )
+	bind( year(?MaxDate) - year(?MinDate)  - if(month(?MaxDate)<month(?MinDate) || (month(?MaxDate)= month(?MinDate) && day(?MaxDate)<day(?MinDate)),1,0) as ?Years )
 }
 ORDER BY DESC(?Years)
 ```
@@ -349,16 +344,16 @@ ORDER BY DESC(?Years)
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select  ?crow count(DISTINCT ?g) AS ?GrPerCrow WHERE{
+SELECT  ?crow count(DISTINCT ?g) AS ?GrPerCrow WHERE{
 	?g grfo:hasGraffitiSprayerCrew ?crow .
 }
 ORDER BY DESC (count(?g))
 ```
-[How many pieces (category Typ) have more than five Stilelemente and are not painted at a Hall of Fame (category Trägermedium)?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0A%0D%0ASELECT+%3Ftyp+%3Fcnt+WHERE+%7B%0D%0A%7B%0D%0ASELECT+%3Ftyp+%28count%28DISTINCT+%3Felem%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasType+%3Ftyp+%3B%0D%0Agrfo%3AhasSyleElement+%3Felem+.%0D%0AFILTER+NOT+EXISTS+%7B+%3Fgraffiti+grfo%3AhasCarrierMedium+%22Hall+of+Fame%22%7D+.%0D%0A%7D%0D%0A%7D%0D%0AFILTER%28%3Fcnt+%3E+5%29%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+) can be answered by this query:
+[How many pieces (category Type) have more than five Stilelemente and are not painted at a Hall of Fame (category Trägermedium)?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0A%0D%0ASELECT+%3Ftyp+%3Fcnt+WHERE+%7B%0D%0A%7B%0D%0ASELECT+%3Ftyp+%28count%28DISTINCT+%3Felem%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasType+%3Ftyp+%3B%0D%0Agrfo%3AhasSyleElement+%3Felem+.%0D%0AFILTER+NOT+EXISTS+%7B+%3Fgraffiti+grfo%3AhasCarrierMedium+%22Hall+of+Fame%22%7D+.%0D%0A%7D%0D%0A%7D%0D%0AFILTER%28%3Fcnt+%3E+5%29%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+) can be answered by this query:
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select ?typ ?cnt WHERE {
+SELECT ?typ ?cnt WHERE {
 {
 select ?typ (count(DISTINCT ?elem) as ?cnt) WHERE
 {
@@ -371,12 +366,12 @@ FILTER(?cnt > 5)
 }
 ```
 
-[How many graffities per category Typ have more than five Stilelemente and are not painted at a Hall of Fame (category Trägermedium)?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+%3Ftyp+count%28DISTINCT+%3Fgraffiti%29+as+%3FcntGraffities+WHERE+%7B%0D%0A%7B%0D%0ASELECT+%3Fgraffiti+%3Ftyp+%28count%28DISTINCT+%3Felem%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasType+%3Ftyp+%3B%0D%0A++++++%09grfo%3AhasSyleElement+%3Felem+.%0D%0AFILTER+NOT+EXISTS+%7B+%3Fgraffiti+grfo%3AhasCarrierMedium+%22Hall+of+Fame%22%5E%5Exsd%3Astring%7D+.%0D%0A%7D%0D%0A%7D%0D%0AFILTER%28%3Fcnt+%3E+5%29%0D%0A%7D%0D%0A%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
+[How many graffities per category Type have more than five Stilelemente and are not painted at a Hall of Fame (category Trägermedium)?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+%3Ftyp+count%28DISTINCT+%3Fgraffiti%29+as+%3FcntGraffities+WHERE+%7B%0D%0A%7B%0D%0ASELECT+%3Fgraffiti+%3Ftyp+%28count%28DISTINCT+%3Felem%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasType+%3Ftyp+%3B%0D%0A++++++%09grfo%3AhasSyleElement+%3Felem+.%0D%0AFILTER+NOT+EXISTS+%7B+%3Fgraffiti+grfo%3AhasCarrierMedium+%22Hall+of+Fame%22%5E%5Exsd%3Astring%7D+.%0D%0A%7D%0D%0A%7D%0D%0AFILTER%28%3Fcnt+%3E+5%29%0D%0A%7D%0D%0A%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select ?typ count(DISTINCT ?graffiti) as ?cntGraffities WHERE {
+SELECT ?typ count(DISTINCT ?graffiti) as ?cntGraffities WHERE {
 {
 select ?graffiti ?typ (count(DISTINCT ?elem) as ?cnt) WHERE
 {
@@ -388,7 +383,8 @@ FILTER NOT EXISTS { ?graffiti grfo:hasCarrierMedium "Hall of Fame"^^xsd:string} 
 FILTER(?cnt > 5)
 }
 ```
-[For showing every Graffiti  with more than 3 Sprayer Names](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+%3Fgraffiti%2C+%3Fcnt+WHERE+%7B%0D%0A%7B%0D%0ASELECT+%3Fgraffiti+%28count%28%3FgraffitiCrew%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%7D%0D%0A%7D%0D%0AFILTER%28%3Fcnt+%3E+3%29%0D%0A%7D%0D%0AGROUP+BY+%3Fgraffiti%0D%0AORDER+BY+desc%28%3Fcnt%29%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+), we can write this query:
+
+[List every graffiti  with more than 3 sprayer crows](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+%3Fgraffiti%2C+%3Fcnt+WHERE+%7B%0D%0A%7B%0D%0ASELECT+%3Fgraffiti+%28count%28%3FgraffitiCrew%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%7D%0D%0A%7D%0D%0AFILTER%28%3Fcnt+%3E+3%29%0D%0A%7D%0D%0AGROUP+BY+%3Fgraffiti%0D%0AORDER+BY+desc%28%3Fcnt%29%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+), we can write this query:
 
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
@@ -433,62 +429,58 @@ And the [number of letters for the item "RIOT RADIO" without spaces example](htt
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select ?itemLen WHERE
-{
-?s grfo:hasItem "RIOT RADIO"@en.
-?s grfo:hasItem ?item.
-bind(replace(?item, " ", "") as ?withoutSpace)
-  bind(strlen(?withoutSpace) as ?itemLen).
+SELECT ?itemLen WHERE{
+	?s grfo:hasItem "RIOT RADIO"@en.
+	?s grfo:hasItem ?item.
+	bind(replace(?item, " ", "") as ?withoutSpace)
+  	bind(strlen(?withoutSpace) as ?itemLen).
 }
 ```
-The answer of this question [what is the average number of letters in the Itemfield for the typ “Spruch/ Konzeptaufruf” + the topic “Politik”](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+%28AVG%28%3FitemLen%29+AS+%3Favg%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasType+%22Spruch%2FKonzeptaufruf%22%3B%0D%0A++++++++++%09grfo%3AhasTheme+%22Politik%22%3B%0D%0A++++++++++%09grfo%3AhasItem+%3Fitem+.%0D%0ABIND+%28strlen%28%3Fitem%29+AS+%3FitemLen%29%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+) is retrieved by this query:
+[What is the average number of letters within graffiti of type “Spruch/ Konzeptaufruf” and topic “Politik”](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+%28AVG%28%3FitemLen%29+AS+%3Favg%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasType+%22Spruch%2FKonzeptaufruf%22%3B%0D%0A++++++++++%09grfo%3AhasTheme+%22Politik%22%3B%0D%0A++++++++++%09grfo%3AhasItem+%3Fitem+.%0D%0ABIND+%28strlen%28%3Fitem%29+AS+%3FitemLen%29%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+) is retrieved by this query:
 
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select (AVG(?itemLen) AS ?avg) WHERE
-{
-?graffiti grfo:hasType "Spruch/Konzeptaufruf";
-          	grfo:hasTheme "Politik";
-          	grfo:hasItem ?item .
-BIND (strlen(?item) AS ?itemLen)
+SELECT (AVG(?itemLen) AS ?avg) WHERE{
+	?graffiti grfo:hasType "Spruch/Konzeptaufruf";
+        	  grfo:hasTheme "Politik";
+          	  grfo:hasItem ?item .
+	BIND (strlen(?item) AS ?itemLen)
 }
 ```
-The query below can retrieve the [Graffities with more than one sprayer name](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0ASELECT+%3Fgraffiti%2C+%3Ftext%2C+%3Fcnt+WHERE+%7B%0D%0A%7B%0D%0ASELECT+%3Fgraffiti+%3Ftext+%28count%28%3FgraffitiCrew%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%3Fgraffiti+grfo%3AhasItem+%3Ftext+.%0D%0A%3Fgraffiti+grfo%3AhasType+%22Piece%2FWriting%2FStyle%22.%0D%0A%3FgraffitiCrew+rdfs%3Alabel+%3FcrewName+.%0D%0A%0D%0A%7D%0D%0A%7D%0D%0AFILTER%28%3Fcnt+%3E+1%29%0D%0A%7D%0D%0AGROUP+BY+%3Fgraffiti%0D%0AORDER+BY+desc%28%3Fcnt%29%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
+
+[Graffities created by more than one sprayer crow](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0ASELECT+%3Fgraffiti%2C+%3Ftext%2C+%3Fcnt+WHERE+%7B%0D%0A%7B%0D%0ASELECT+%3Fgraffiti+%3Ftext+%28count%28%3FgraffitiCrew%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%3Fgraffiti+grfo%3AhasItem+%3Ftext+.%0D%0A%3Fgraffiti+grfo%3AhasType+%22Piece%2FWriting%2FStyle%22.%0D%0A%3FgraffitiCrew+rdfs%3Alabel+%3FcrewName+.%0D%0A%0D%0A%7D%0D%0A%7D%0D%0AFILTER%28%3Fcnt+%3E+1%29%0D%0A%7D%0D%0AGROUP+BY+%3Fgraffiti%0D%0AORDER+BY+desc%28%3Fcnt%29%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select ?graffiti, ?text, ?cnt WHERE {
-{
-select ?graffiti ?text (count(?graffitiCrew) as ?cnt) WHERE
-{
-?graffiti grfo:hasGraffitiSprayerCrew ?graffitiCrew .
-?graffiti grfo:hasItem ?text .
-?graffiti grfo:hasType "Piece/Writing/Style".
-?graffitiCrew rdfs:label ?crewName .
-}
-}
-FILTER(?cnt > 1)
+SELECT ?graffiti, ?text, ?cnt WHERE {
+	SELECT ?graffiti ?text (count(?graffitiCrew) as ?cnt) WHERE{
+		?graffiti grfo:hasGraffitiSprayerCrew ?graffitiCrew .
+		?graffiti grfo:hasItem ?text .
+		?graffiti grfo:hasType "Piece/Writing/Style".
+		?graffitiCrew rdfs:label ?crewName .
+	}
+	FILTER(?cnt > 1)
 }
 GROUP BY ?graffiti
 ORDER BY desc(?cnt)
 ```
-[What is the most frequent language in the category Typ/Spruch/Konzeptaufruf ?  Comparison for the results depending on the period of time (1980-1989, 1990-1999 and so on..](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT++%3Flang+count%28DISTINCT+%3Fg%29+AS+%3FGrPerLang+WHERE%7B%0D%0A%09%3Fg+grfo%3AhasType+%22Spruch%2FKonzeptaufruf%22.%0D%0A%09%3Fg+grfo%3AhasLanguage+%3Flang%0D%0A%7D%0D%0AORDER+BY+DESC+%28count%28%3Fg%29%29%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+) can be answered by this query:
+[What is the most frequent languages of grafitti of Type "Spruch/Konzeptaufruf"?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT++%3Flang+count%28DISTINCT+%3Fg%29+AS+%3FGrPerLang+WHERE%7B%0D%0A%09%3Fg+grfo%3AhasType+%22Spruch%2FKonzeptaufruf%22.%0D%0A%09%3Fg+grfo%3AhasLanguage+%3Flang%0D%0A%7D%0D%0AORDER+BY+DESC+%28count%28%3Fg%29%29%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select  ?lang count(DISTINCT ?g) AS ?GrPerLang WHERE{
+SELECT  ?lang count(DISTINCT ?g) AS ?GrPerLang WHERE{
 	?g grfo:hasType "Spruch/Konzeptaufruf".
 	?g grfo:hasLanguage ?lang
 }
 ORDER BY DESC (count(?g))
 ```
-Here is [a comparison for the results depending on the period of time (1990-1999)](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT++%3Flang+count%28DISTINCT+%3Fg%29+AS+%3FGrPerLang+WHERE%7B%0D%0A%09%3Fg+grfo%3AhasType+%22Spruch%2FKonzeptaufruf%22.%0D%0A%09%3Fg+grfo%3AhasLanguage+%3Flang.%0D%0A%09%3Fg+grfo%3AhasRecordingDate+%3Fdate+.%0D%0AFILTER%28%221990-01-01%22%5E%5Exsd%3Adate+%3C%3D+%3Fdate+%26%26+%3Fdate+%3C+%221999-12-31%22%5E%5Exsd%3Adate%29.%0D%0A%0D%0A%7D%0D%0AORDER+BY+DESC+%28count%28%3Fg%29%29+%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
+[What is the most frequent languages of grafitti of Type "Spruch/Konzeptaufruf" within the time slot (1990-1999)](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT++%3Flang+count%28DISTINCT+%3Fg%29+AS+%3FGrPerLang+WHERE%7B%0D%0A%09%3Fg+grfo%3AhasType+%22Spruch%2FKonzeptaufruf%22.%0D%0A%09%3Fg+grfo%3AhasLanguage+%3Flang.%0D%0A%09%3Fg+grfo%3AhasRecordingDate+%3Fdate+.%0D%0AFILTER%28%221990-01-01%22%5E%5Exsd%3Adate+%3C%3D+%3Fdate+%26%26+%3Fdate+%3C+%221999-12-31%22%5E%5Exsd%3Adate%29.%0D%0A%0D%0A%7D%0D%0AORDER+BY+DESC+%28count%28%3Fg%29%29+%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select  ?lang count(DISTINCT ?g) AS ?GrPerLang WHERE{
+SELECT  ?lang count(DISTINCT ?g) AS ?GrPerLang WHERE{
 	?g grfo:hasType "Spruch/Konzeptaufruf".
 	?g grfo:hasLanguage ?lang.
 	?g grfo:hasRecordingDate ?date .
@@ -497,30 +489,29 @@ FILTER("1990-01-01"^^xsd:date <= ?date && ?date < "1999-12-31"^^xsd:date).
 }
 ORDER BY DESC (count(?g)) 
 ```
-In addtion, we can retrieve the [number of used color per crew](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+DISTINCT+%3FgraffitiCrew+%3Fcolour++%28count%28%3Fcolour%29+as+%3Fcount%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%3FgraffitiCrew+a+grfo%3AGraffitiSprayerCrew+.%0D%0A%3Fgraffiti+grfo%3AhasColour+%3Fcolour+.%0D%0A%7D%0D%0AGROUP+BY+%3FgraffitiCrew+%3Fcolour%0D%0AORDER+BY+DESC%28%3Fcount%29%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
+[Retrieve the number of used color per crew](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+DISTINCT+%3FgraffitiCrew+%3Fcolour++%28count%28%3Fcolour%29+as+%3Fcount%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%3FgraffitiCrew+a+grfo%3AGraffitiSprayerCrew+.%0D%0A%3Fgraffiti+grfo%3AhasColour+%3Fcolour+.%0D%0A%7D%0D%0AGROUP+BY+%3FgraffitiCrew+%3Fcolour%0D%0AORDER+BY+DESC%28%3Fcount%29%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select disntict ?graffitiCrew ?colour  (count(?colour) as ?count) WHERE
+SELECT disntict ?graffitiCrew ?colour  (count(?colour) as ?count) WHERE
 {
-?graffiti grfo:hasGraffitiSprayerCrew ?graffitiCrew .
-?graffitiCrew a grfo:GraffitiSprayerCrew .
-?graffiti grfo:hasColour ?colour .
+	?graffiti grfo:hasGraffitiSprayerCrew ?graffitiCrew .
+	?graffitiCrew a grfo:GraffitiSprayerCrew .
+	?graffiti grfo:hasColour ?colour .
 }
 GROUP BY ?graffitiCrew ?colour
 ORDER BY DESC(?count)
 ```
 
 
-and [find all sub-graffities with comment](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+count%28DISTINCT+*%29+WHERE%0D%0A%7B%0D%0A%3Fg+a+grfo%3AGraffiti+.%0D%0A%3Fg+grfo%3AhasType+%22Comment%22+.%0D%0A%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
+[Find all sub-graffities with comment](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+count%28DISTINCT+*%29+WHERE%0D%0A%7B%0D%0A%3Fg+a+grfo%3AGraffiti+.%0D%0A%3Fg+grfo%3AhasType+%22Comment%22+.%0D%0A%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-select count(DISTINCT *) WHERE
+SELECT count(DISTINCT *) WHERE
 {
-?g a grfo:Graffiti .
-?g grfo:hasType "Comment" .
-
+	?g a grfo:Graffiti .
+	?g grfo:hasType "Comment" .
 }
 ```
