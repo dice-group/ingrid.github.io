@@ -98,10 +98,9 @@ SELECT distinct count( ?s ) as ?cnt where{
 [How many crew members in each crew?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0ASELECT+DISTINCT+%3Fcrew%2C+count%28+%3FcrewMember+%29+as+%3Fcnt+WHERE%0D%0A%7B%0D%0A%3Fcrew+a+grfo%3ACrewMember+.%0D%0A%3Fcrew+grfo%3AhasCrewMember+%3FcrewMember+.%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 ```
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-SELECT distinct ?crew, count( ?crewMember ) as ?cnt WHERE
-{
-?crew a grfo:CrewMember .
-?crew grfo:hasCrewMember ?crewMember .
+SELECT distinct ?crew, count( ?crewMember ) as ?cnt WHERE{
+	?crew a grfo:CrewMember .
+	?crew grfo:hasCrewMember ?crewMember .
 }
 ```
 [To how many crews does a crew member belong?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0ASELECT+DISTINCT+%3FcrewMember+count%28%3Fcrew%29+as+%3Fcnt+WHERE%0D%0A%7B%0D%0A%3Fcrew+a+grfo%3ACrewMember+.%0D%0A%3Fcrew+grfo%3AhasCrewMember+%3FcrewMember+.%0D%0A%0D%0A%3FcrewMember+a+grfo%3ACrewMember+.%0D%0A%3FcrewMember+rdfs%3Alabel+%3FcrewMemberLabel.%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+) 
