@@ -300,10 +300,10 @@ FILTER NOT EXISTS { ?graffiti grfo:hasCarrierMedium "Hall of Fame"} .
 ```
 
 To [show every Graffiti with only one name in the field SPRÜHER that has an embedded signature](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+%3Fs+%28COUNT%28%3Fs%29+AS+%3Fcount%29%0D%0AWHERE+%7B%0D%0A%3Fs+grfo%3AhasGraffitiSprayerCrew+%3Fo+%3B%0D%0A+++++grfo%3AhasEmbeddedGraffiti+%22Signatur%2Fen%22.%0D%0A%7D%0D%0AGROUP+BY+%3Fs%0D%0AHAVING+%28COUNT%28%3Fs%29+%3D+1%29%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
+
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-
 select ?s (COUNT(?s) AS ?count)
 WHERE {
 ?s grfo:hasGraffitiSprayerCrew ?o ;
@@ -322,8 +322,9 @@ WHERE {
   	grfo:hasGraffitiSprayerCrew ?crow .
   ?crow rdfs:label ?name
 }
-ORDER BY ?crowhttps://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+%3Ftyp+count%28DISTINCT+%3Fgraffiti%29+as+%3FcntGraffities+WHERE+%7B%0D%0A%7B%0D%0ASELECT+%3Fgraffiti+%3Ftyp+%28count%28DISTINCT+%3Felem%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasType+%3Ftyp+%3B%0D%0A++++++%09grfo%3AhasSyleElement+%3Felem+.%0D%0AFILTER+NOT+EXISTS+%7B+%3Fgraffiti+grfo%3AhasCarrierMedium+%22Hall+of+Fame%22%5E%5Exsd%3Astring%7D+.%0D%0A%7D%0D%0A%7D%0D%0AFILTER%28%3Fcnt+%3E+5%29%0D%0A%7D%0D%0A%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+
+ORDER BY ?crow
 ```
+
 [Number of PLZ per crew](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+%3Fcrow+COUNT%28%3Fplz%29+AS+%3Fcount%0D%0AWHERE+%7B%0D%0A++%3Fg++grfo%3AhasPostalCode+%3Fplz+%3B%0D%0A++%09grfo%3AhasGraffitiSprayerCrew+%3Fcrow+.%0D%0A%7D%0D%0AORDER+BY+DESC+%28%3Fcount%29%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 ```
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
