@@ -9,7 +9,7 @@ In particular, INGRID-KG is an RDF knowledge graph of annotated graffiti, abides
 We weekly updating INGRID-KG by augmenting the new annotated graffiti to our knowledge graph.  
 Our generation pipeline applies RDF data conversion, link discovery and data fusion approaches to the original data.
 INGRID-KG is publicly available under the **Creative Commons Attribution 4.0 International** license. 
-## Annotation Manuals in [English](https://github.com/dice-group/ingrid.github.io/blob/main/INGRID_Manual_English.pdf) and in [German](https://github.com/dice-group/ingrid.github.io/blob/main/INGRID_Manual_German.pdf)
+## Annotation Manuals in [German](https://github.com/dice-group/ingrid.github.io/blob/main/INGRID_Manual_German.pdf)
 
 ### A list of SPARQL queries from the [INGRID-KG endpoint](https://graffiti.data.dice-research.org/sparql/).
 
