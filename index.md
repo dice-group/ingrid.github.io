@@ -337,7 +337,6 @@ SELECT ?typ count(DISTINCT ?graffiti) as ?cntGraffities WHERE {
 }
 ```
 
-[List every graffiti  with more than 3 sprayer crows](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+%3Fgraffiti%2C+%3Fcnt+WHERE+%7B%0D%0A%7B%0D%0ASELECT+%3Fgraffiti+%28count%28%3FgraffitiCrew%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%7D%0D%0A%7D%0D%0AFILTER%28%3Fcnt+%3E+3%29%0D%0A%7D%0D%0AGROUP+BY+%3Fgraffiti%0D%0AORDER+BY+desc%28%3Fcnt%29%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+), we can write this query:
 ```sparql
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
@@ -398,7 +397,7 @@ SELECT (AVG(?itemLen) AS ?avg) WHERE{
 }
 ```
 
-[Fing the graffities created by more than one sprayer crew.](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0ASELECT+%3Fgraffiti%2C+%3Ftext%2C+%3Fcnt+WHERE+%7B%0D%0A%7B%0D%0ASELECT+%3Fgraffiti+%3Ftext+%28count%28%3FgraffitiCrew%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%3Fgraffiti+grfo%3AhasItem+%3Ftext+.%0D%0A%3Fgraffiti+grfo%3AhasType+%22Piece%2FWriting%2FStyle%22.%0D%0A%3FgraffitiCrew+rdfs%3Alabel+%3FcrewName+.%0D%0A%0D%0A%7D%0D%0A%7D%0D%0AFILTER%28%3Fcnt+%3E+1%29%0D%0A%7D%0D%0AGROUP+BY+%3Fgraffiti%0D%0AORDER+BY+desc%28%3Fcnt%29%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
+[Find the graffities created by more than one sprayer crew.](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0ASELECT+%3Fgraffiti%2C+%3Ftext%2C+%3Fcnt+WHERE+%7B%0D%0A%7B%0D%0ASELECT+%3Fgraffiti+%3Ftext+%28count%28%3FgraffitiCrew%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%3Fgraffiti+grfo%3AhasItem+%3Ftext+.%0D%0A%3Fgraffiti+grfo%3AhasType+%22Piece%2FWriting%2FStyle%22.%0D%0A%3FgraffitiCrew+rdfs%3Alabel+%3FcrewName+.%0D%0A%0D%0A%7D%0D%0A%7D%0D%0AFILTER%28%3Fcnt+%3E+1%29%0D%0A%7D%0D%0AGROUP+BY+%3Fgraffiti%0D%0AORDER+BY+desc%28%3Fcnt%29%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 ```sparql
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
@@ -452,7 +451,7 @@ GROUP BY ?graffitiCrew ?colour
 ORDER BY DESC(?count)
 ```
 
-[Find all sub-graffities with comments?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+count%28DISTINCT+*%29+WHERE%0D%0A%7B%0D%0A%3Fg+a+grfo%3AGraffiti+.%0D%0A%3Fg+grfo%3AhasType+%22Comment%22+.%0D%0A%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
+[Find all sub-graffiti with comments](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+count%28DISTINCT+*%29+WHERE%0D%0A%7B%0D%0A%3Fg+a+grfo%3AGraffiti+.%0D%0A%3Fg+grfo%3AhasType+%22Comment%22+.%0D%0A%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 ```sparql
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
