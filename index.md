@@ -144,7 +144,7 @@ SELECT distinct* WHERE{
 }
 ```
 
-[How many graffities are painted by each crew?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0Aselect+distinct+%3FcrewName+%28count%28%3FgraffitiCrew%29+as+%3Fcnt%29+WHERE%7B%0D%0A%09%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%09%3FgraffitiCrew+rdfs%3Alabel+%3FcrewName+.%0D%0A%7D%0D%0AGROUP+BY+%3FcrewName%0D%0AORDER+BY+desc%28%3Fcnt%29%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+) 
+[How many graffities were painted by each crew?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0Aselect+distinct+%3FcrewName+%28count%28%3FgraffitiCrew%29+as+%3Fcnt%29+WHERE%7B%0D%0A%09%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%09%3FgraffitiCrew+rdfs%3Alabel+%3FcrewName+.%0D%0A%7D%0D%0AGROUP+BY+%3FcrewName%0D%0AORDER+BY+desc%28%3Fcnt%29%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+) 
 ```sparql
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
@@ -155,18 +155,6 @@ SELECT distinct ?crewName (count(?graffitiCrew) as ?cnt) WHERE{
 GROUP BY ?crewName
 ORDER BY desc(?cnt)
 ```
-
-[How many graffities painted by each crew?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0Aselect+%3FcrewName+%28count%28%3FgraffitiCrew%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%3FgraffitiCrew+rdfs%3Alabel+%3FcrewName+.%0D%0A%7D%0D%0AGROUP+BY+%3FcrewName%0D%0AORDER+BY+desc%28%3Fcnt%29&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
-```sparql
-PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-SELECT ?crewName (count(?graffitiCrew) as ?cnt) WHERE{
-	?graffiti grfo:hasGraffitiSprayerCrew ?graffitiCrew .
-	?graffitiCrew rdfs:label ?crewName .
-}
-GROUP BY ?crewName
-ORDER BY desc(?cnt)
-```
-
 [What is the average number of colours per graffiti?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=%0D%0A+%0D%0APREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+%28AVG%28%3Fcnt%29+AS+%3Favg%29%0D%0AWHERE+%7B%0D%0A+SELECT+DISTINCT+%3Fgraffiti+count%28+%3Felem+%29+AS+%3Fcnt+WHERE%0D%0A+%7B+%3Fgraffiti+grfo%3AhasColour+%3Felem+.%7D%0D%0A%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
  ```sparql
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
@@ -179,7 +167,7 @@ SELECT  (AVG(?cnt) AS ?avg) WHERE {
 }
 ```
 
-[How many graffities has _Spanish_ language?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0A%0D%0ASELECT+DISTINCT+count%28+%3Fgraffiti+%29+AS+%3Fcnt+WHERE%0D%0A%7B+%3Fgraffiti+grfo%3AhasLanguage+%22es+-+Spanisch%22%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
+[How many graffities contain some_Spanish?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0A%0D%0ASELECT+DISTINCT+count%28+%3Fgraffiti+%29+AS+%3Fcnt+WHERE%0D%0A%7B+%3Fgraffiti+grfo%3AhasLanguage+%22es+-+Spanisch%22%7D%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 ```sparql
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
