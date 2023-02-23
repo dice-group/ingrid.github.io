@@ -397,21 +397,22 @@ SELECT (AVG(?itemLen) AS ?avg) WHERE{
 }
 ```
 
-[Find the graffities created by more than one sprayer crew.](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0ASELECT+%3Fgraffiti%2C+%3Ftext%2C+%3Fcnt+WHERE+%7B%0D%0A%7B%0D%0ASELECT+%3Fgraffiti+%3Ftext+%28count%28%3FgraffitiCrew%29+as+%3Fcnt%29+WHERE%0D%0A%7B%0D%0A%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%3Fgraffiti+grfo%3AhasItem+%3Ftext+.%0D%0A%3Fgraffiti+grfo%3AhasType+%22Piece%2FWriting%2FStyle%22.%0D%0A%3FgraffitiCrew+rdfs%3Alabel+%3FcrewName+.%0D%0A%0D%0A%7D%0D%0A%7D%0D%0AFILTER%28%3Fcnt+%3E+1%29%0D%0A%7D%0D%0AGROUP+BY+%3Fgraffiti%0D%0AORDER+BY+desc%28%3Fcnt%29%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
+[Find the graffities created by more than one sprayer crew.](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0ASELECT+%3Fgraffiti+%3Fcnt%0D%0A%7B%7B%0D%0ASELECT+%3Fgraffiti+count%28%3FgraffitiCrew%29+as+%3Fcnt+WHERE+%7B%0D%0A%09%09%3Fgraffiti+grfo%3AhasGraffitiSprayerCrew+%3FgraffitiCrew+.%0D%0A%09%09%3Fgraffiti+grfo%3AhasType+%22Piece%2FWriting%2FStyle%22.%0D%0A%09%09%3FgraffitiCrew+rdfs%3Alabel+%3FcrewName+.%0D%0A%7D%0D%0AGROUP+BY+%3Fgraffiti%0D%0A%7D%0D%0AFILTER+%28%3Fcnt+%3E+1%29%0D%0A%7D%0D%0AORDER+BY+DESC%28%3Fcnt%29%0D%0A%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 ```sparql
 PREFIX grfr: <https://graffiti.data.dice-research.org/resource/>
 PREFIX grfo: <https://graffiti.data.dice-research.org/ontology/>
-SELECT ?graffiti, ?text, ?cnt WHERE {
-	SELECT ?graffiti ?text (count(?graffitiCrew) as ?cnt) WHERE{
+SELECT ?graffiti ?cnt
+{{
+SELECT ?graffiti count(?graffitiCrew) as ?cnt WHERE {
 		?graffiti grfo:hasGraffitiSprayerCrew ?graffitiCrew .
-		?graffiti grfo:hasItem ?text .
 		?graffiti grfo:hasType "Piece/Writing/Style".
 		?graffitiCrew rdfs:label ?crewName .
-	}
-	FILTER(?cnt > 1)
 }
 GROUP BY ?graffiti
-ORDER BY desc(?cnt)
+}
+FILTER (?cnt > 1)
+}
+ORDER BY DESC(?cnt)
 ```
 [What is the most frequent languages of grafitti of Type "Spruch/Konzeptaufruf"?](https://graffiti.data.dice-research.org/sparql/?default-graph-uri=&query=PREFIX+grfp%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fgraffiti%23%3E%0D%0APREFIX+grfr%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fresource%2F%3E%0D%0APREFIX+grfo%3A+%3Chttps%3A%2F%2Fgraffiti.data.dice-research.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT++%3Flang+count%28DISTINCT+%3Fg%29+AS+%3FGrPerLang+WHERE%7B%0D%0A%09%3Fg+grfo%3AhasType+%22Spruch%2FKonzeptaufruf%22.%0D%0A%09%3Fg+grfo%3AhasLanguage+%3Flang%0D%0A%7D%0D%0AORDER+BY+DESC+%28count%28%3Fg%29%29%0D%0A&format=text%2Fhtml&timeout=0&debug=on&run=+Run+Query+)
 ```sparql
