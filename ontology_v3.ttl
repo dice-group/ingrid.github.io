@@ -1,0 +1,813 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dc11: <http://purl.org/dc/elements/1.1/> .
+@prefix grfo: <https://graffiti.data.dice-research.org/ontology/> .
+@prefix grfr: <https://graffiti.data.dice-research.org/resource/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ns0: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix rdfa: <http://www.w3.org/ns/rdfa#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+grfo:
+  a owl:Ontology ;
+  dc11:description "An ontology for the Graffiti knowledge graph for representing data in RDF"^^xsd:string ;
+  dc11:title "Graffiti vocabulary"^^xsd:string .
+  
+grfo:Graffiti
+  rdfs:isDefinedBy grfo: ;
+  a owl:Class, rdfs:Class ;
+  rdfs:comment "Graffiti is the class representing the graffiti object"^^xsd:string ;
+  rdfs:label "Graffiti"^^xsd:string ;
+  ns0:term_status "stable"^^xsd:string .
+
+grfo:City
+  rdfs:isDefinedBy grfo: ;
+  a owl:Class, rdfs:Class ;
+  rdfs:comment "City is the class representing the city"^^xsd:string ;
+  rdfs:label "City"@en, "Stadt"@de ;
+  ns0:term_status "stable"^^xsd:string .
+
+grfo:ImageFile
+  rdfs:isDefinedBy grfo: ;
+  a owl:Class, rdfs:Class ;
+  rdfs:comment "ImageFile is the class representing the image file"^^xsd:string ;
+  rdfs:label "Image file"@en, "Bilddatei"@de ;
+  ns0:term_status "stable"^^xsd:string .
+  
+grfo:GraffitiSprayerCrew
+  rdfs:isDefinedBy grfo: ;
+  a owl:Class, rdfs:Class ;
+  rdfs:comment "GraffitiSprayerCrew is the class representing the graffiti sprayer crew"^^xsd:string ;
+  rdfs:label "Graffiti sprayer crew"@en, "Graffiti-sprühercrew"@de ;
+  ns0:term_status "stable"^^xsd:string .
+  
+grfo:CrewMember
+  rdfs:isDefinedBy grfo: ;
+  a owl:Class, rdfs:Class ;
+  rdfs:comment "CrewMember is the class representing a crew member"^^xsd:string ;
+  rdfs:label "CrewMember"@en, "Crewmitglied"@de;
+  ns0:term_status "stable"^^xsd:string .
+  
+grfo:GraffitiSymbol
+  rdfs:isDefinedBy grfo: ;
+  a owl:Class, rdfs:Class ;
+  rdfs:comment "GraffitiSymbol is the class representing a symbol identified in a graffiti"^^xsd:string ;
+  rdfs:label "Graffiti symbol"@en, "Graffitisymbol"@de ;
+  ns0:term_status "stable"^^xsd:string .
+  
+grfo:Collection
+  rdfs:isDefinedBy grfo: ;
+  a owl:Class, rdfs:Class ;
+  rdfs:comment "Collection is the class representing a collection"^^xsd:string ;
+  rdfs:label "Collection"@en, "Sammlung"@de ;
+  ns0:term_status "stable"^^xsd:string .
+  
+grfo:Tag
+  rdfs:isDefinedBy grfo: ;
+  a owl:Class, rdfs:Class ;
+  rdfs:comment "Tag is the class representing a tag"^^xsd:string ;
+  rdfs:label "Tag"^^xsd:string ;
+  ns0:term_status "stable"^^xsd:string .
+
+grfo:TagGroup
+  rdfs:isDefinedBy grfo: ;
+  a owl:Class, rdfs:Class ;
+  rdfs:comment "TagGroup is the class representing a tag group"^^xsd:string ;
+  rdfs:label "Tag group"@en, "Tag-Gruppe"@de ;
+  ns0:term_status "stable"^^xsd:string .
+
+
+grfo:hasId
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Identification number of the graffiti"^^xsd:string ;
+  rdfs:label "ID"^^xsd:string ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasVersion
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Version of the graffiti"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Version"^^xsd:string ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasCarrierMedium
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Graffiti painted surface"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Carrier medium"@en, "Traegermedium"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasCharacterType
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Type of characters"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Character type"@en, "Zeichentyp"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasColour
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Colour of the graffiti"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Colour"@en, "Farbe"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasContext
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Context of the graffiti"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Context"@en, "Kontext"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasDirectionality
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Directionality of the graffiti"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Directionality"@en, "Direktionalitaet"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasFunction
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The purpose of the graffiti"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Function"@en, "Funktion"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasLocation
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The place where the graffiti was drawn"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Location"@en, "Fundort Stadt"@de ;
+  rdfs:range grfo:State ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasPreviewWatermarkFile
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Preview watermark file object"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Preview watermark file"@en, "Vorschau der Wasserzeichendatei"@de ;
+  rdfs:range grfo:ImageFile;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasPreviewFile
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Preview file object"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Preview file"@en, "Vorschaudatei"@de ;
+  rdfs:range grfo:ImageFile;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasSmallFile
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Small file object"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Small File"@en , "Kleine Datei"@de ;
+  rdfs:range grfo:ImageFile ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasImageLayer
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Image plane"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Image layer"@en, "Bildebene"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:inInventory
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The name of the inventory"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Inventory"@en, "Bestand"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasItem
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Specific inscription on the graffiti"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "item"@en , "Artikel"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasLanguage
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The language of the graffiti"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Language"@en, "Sprache"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasLetterStyle
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Style of the letters"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Letter style"@en, "Buchstabenstil"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasLinguisticConstruction
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Linguistic construction of the graffiti"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Linguistic construction"@en, "SprachlicheKonstruktion"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasMotive
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Type of the motive"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Motive"@en, "Motiv"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasOriginalPhoto
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Original photo object"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Original photo"@en, "Originalfoto"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasProcessingDate
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The date when the image was processed"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Processing date"@en, "Bearbeitungsdatum"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasRecordingDate
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The date when the record of the image was added"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Recording date"@en, "Aufnahmedatum"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasStyleElement
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The style of the elements"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Style element"@en, "Stilelement"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasSurface
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The material of the surface where the graffiti was drawn"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Surface"@en, "Oberflaeche"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasTechnology
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The tool for the drawing"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Technology"@en, "Technik"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasText
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The full text of the graffiti"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Text"^^xsd:string ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasTheme
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The theme of the graffiti"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Theme"@en, "Thema"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasTitle
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The filename of the photo with the graffiti"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Title"@en, "Titel"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasType
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The type of the graffiti"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:label "Type"@en, "Typ"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasAspectRatio
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The ratio of the width to the height of an image"^^xsd:string ;
+  rdfs:domain grfo:ImageFile;
+  rdfs:label "Aspect ratio"@en, "Seitenverhältnis"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasExtension
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The extension of the file"^^xsd:string ;
+  rdfs:domain grfo:ImageFile;
+  rdfs:label "Extension"@en, "Dateierweiterung"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasUri
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The image URI"^^xsd:string ;
+  rdfs:domain grfo:ImageFile;
+  rdfs:label "URI"^^xsd:string ;
+  rdfs:range rdfa:uri ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasSymbolFigure
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The symbol description"^^xsd:string ;
+  rdfs:domain grfo:Symbol;
+  rdfs:label "Symbol"^^xsd:string ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+  
+grfo:hasSymbolText
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The written form of a symbol"^^xsd:string ;
+  rdfs:label "Text field"@en, "textfeld"@de ;
+  rdfs:domain grfo:Symbol;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasReceipt
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Beleg"^^xsd:string ;
+  rdfs:label "Receipt"@en, "Beleg"@de ;
+  rdfs:range rdfs:Literal ;
+  rdfs:domain grfo:GraffitiSymbol, grfo:GraffitiSprayerCrew;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasRemarksURI
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The URI of remarks"^^xsd:string ;
+  rdfs:label "Remarks URI"@en, "Bemerkungen URI"@de ;
+  rdfs:range rdfa:uri ;
+  ns0:term_status "testing"^^xsd:string .
+
+grfo:hasAnnotator
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Annotator of an object"^^xsd:string ;
+  rdfs:label "Annotator"@en, "Kommentator"@de ;
+  rdfs:range foaf:Person ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasArchitecture
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Architecture"^^xsd:string ;
+  rdfs:label "Architecture"@en, "Architektur"@de ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasProcessingStatus
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Processting status"^^xsd:string ;
+  rdfs:label "Processting status"@en, "bearbeitungsstand"@de ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasFigureStyle
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Figure style"^^xsd:string ;
+  rdfs:label "Figure style"@en, "Figurenstil"@de ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasCollectionId
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Identification number of the collection"^^xsd:string ;
+  rdfs:label "Collection ID"@en, "Sammlungs-ID"@de ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range grfo:Collection ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasGraffitiSymbol
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Symbol object"^^xsd:string ;
+  rdfs:label "Symbol"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range grfo:GraffitiSymbol ;
+  ns0:term_status "testing"^^xsd:string .
+    
+grfo:hasTagId
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "The identification number of a Tag"^^xsd:string ;
+  rdfs:label "Tag ID"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range grfo:Tag ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasDate
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Date"^^xsd:string ;
+  rdfs:label "Date"@en, "Datierung"@de ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasEmbeddedGraffiti
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Embedded graffiti"^^xsd:string ;
+  rdfs:label "Embedded graffiti"@en, "Eingebettetesgraffiti"@de ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasFullFile
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Full file image"^^xsd:string ;
+  rdfs:label "Full file"@en, "Vollständige Datei"@de ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range grfo:ImageFile ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasHugeFile
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Huge file image"^^xsd:string ;
+  rdfs:label "Huge file"@en, "Große Datei"@de ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range grfo:ImageFile ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasOriginalFile
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Original file image"^^xsd:string ;
+  rdfs:label "Original file"@en, "Originaldatei"@de ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range grfo:ImageFile ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:lastModified
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Last modified date"^^xsd:string ;
+  rdfs:label "Last Modified"@en, "Zuletzt Geändert"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasLiterature
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Literature"^^xsd:string ;
+  rdfs:label "Literature"@en, "literatur"@de ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasLocationStreet
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Location Street"^^xsd:string ;
+  rdfs:label "Location Street"@en , "Standort Straße"@de ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasNote
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Note"^^xsd:string ;
+  rdfs:label "Note"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasPostalCode
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Postal code of the graffiti location"^^xsd:string ;
+  rdfs:label "postal code"@en, "Postleitzahl"@de ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasEditor
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Redakteur"^^xsd:string ;
+  rdfs:label "Editor"@en, "Redakteur"@de ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasRemarks
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Remarks"^^xsd:string ;
+  rdfs:label "Remarks"@en, "Bemerkungen"@de ;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasSixomcid
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "sixomcid"^^xsd:string ;
+  rdfs:label "sixomcid"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasSixomcuid
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "sixomcuid"^^xsd:string ;
+  rdfs:label "sixomcuid"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasGraffitiSprayerCrew
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Sprayercrew of the graffiti"^^xsd:string ;
+  rdfs:label "Graffiti Sprayer Crew"@en, "Spruehercrew"@de ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range grfo:GraffitiSprayerCrew ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:creationDate
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Creation date"^^xsd:string ;
+  rdfs:label "Creation date"^^xsd:string ;
+  rdfs:domain grfo:Graffiti;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:collectionCreationDate
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Creation date of a collection"^^xsd:string ;
+  rdfs:label "Creation date"^^xsd:string ;
+  rdfs:domain grfo:Collection;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasCollectionName
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Name of a collection"^^xsd:string ;
+  rdfs:label "Collection name"^^xsd:string ;
+  rdfs:domain grfo:Collection;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasCreatedDate
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Creation date of a collection"^^xsd:string ;
+  rdfs:label "createdDate"^^xsd:string ;
+  rdfs:domain grfo:Collection;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasUuid
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "UUID"^^xsd:string ;
+  rdfs:label "uuid"^^xsd:string ;
+  rdfs:domain grfo:Collection;
+  rdfs:range rdfs:Literal ;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasTag
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Tag object element of a group"^^xsd:string ;
+  rdfs:label "hasTag"^^xsd:string ;
+  rdfs:domain grfo:TagGroup;
+  rdfs:range grfo:Tag;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasTagGroupName
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Name of a tag group"^^xsd:string ;
+  rdfs:label "Tag group name"^^xsd:string ;
+  rdfs:domain grfo:TagGroup;
+  rdfs:range rdfs:Literal;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasTagName
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Name of a tag"^^xsd:string ;
+  rdfs:label "Tag name"^^xsd:string ;
+  rdfs:domain grfo:Tag;
+  rdfs:range rdfs:Literal;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasMeaning
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Meaning"^^xsd:string ;
+  rdfs:label "Meaning"@en, "Bedeutung"@de ;
+  rdfs:domain grfo:GraffitiSprayerCrew;
+  rdfs:range rdfs:Literal;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasCrewMembership
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Crew membership"^^xsd:string ;
+  rdfs:label "Crew memberships"@en, "Crewmitgliedschaften"@de ;
+  rdfs:domain grfo:GraffitiSprayerCrew;
+  rdfs:range rdfs:Literal;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:memberOfCrew
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Member of a crew"^^xsd:string ;
+  rdfs:label "Crew membership"@de, "crewmitgliedschaften"@de ;
+  rdfs:domain grfo:GraffitiSprayerCrew;
+  rdfs:range rdfs:Literal;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasExample
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Beispiel"^^xsd:string ;
+  rdfs:label "Example"@en, "Beispiel"@de ;
+  rdfs:domain grfo:GraffitiSprayerCrew;
+  rdfs:range rdfs:Literal;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasCrewMember
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Crew member"^^xsd:string ;
+  rdfs:label "Has crew member"^^xsd:string ;
+  rdfs:domain grfo:GraffitiSprayerCrew;
+  rdfs:range grfo:CrewMember;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasLongForm
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Long form"^^xsd:string ;
+  rdfs:label "Long form"^^xsd:string ;
+  rdfs:domain grfo:GraffitiSprayerCrew;
+  rdfs:range rdfs:Literal;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasShortForm
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Short form"^^xsd:string ;
+  rdfs:label "Short form"^^xsd:string ;
+  rdfs:domain grfo:GraffitiSprayerCrew;
+  rdfs:range rdfs:Literal;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasNumber
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Number"^^xsd:string ;
+  rdfs:label "Number"@en, "Zahl"@de ;
+  rdfs:domain grfo:GraffitiSprayerCrew;
+  rdfs:range rdfs:Literal;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasName
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Name"^^xsd:string ;
+  rdfs:label "name"^^xsd:string ;
+  rdfs:range rdfs:Literal;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasLongNameForm
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Long name form"^^xsd:string ;
+  rdfs:label "Long name form"@en, "Namelangform"@de ;
+  rdfs:domain grfo:GraffitiSprayerCrew;
+  rdfs:range rdfs:Literal;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasNameVariant
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Name variant"^^xsd:string ;
+  rdfs:label "Name variant"@de, "Namensvariante"@de ;
+  rdfs:domain grfo:CrewMember;
+  rdfs:range rdfs:Literal;
+  ns0:term_status "testing"^^xsd:string .
+    
+grfo:hasRelation
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Relation"^^xsd:string ;
+  rdfs:label "relation"^^xsd:string ;
+  rdfs:domain grfo:GraffitiSprayerCrew;
+  rdfs:range rdfs:Literal;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasPlaceOfActivity
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Place of activity"^^xsd:string ;
+  rdfs:label "Place of activity"@en, "Taetigkeitsort"@de ;
+  rdfs:domain grfo:GraffitiSprayerCrew;
+  rdfs:range rdfs:Literal;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasPeriodOfActivityFrom
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Period of activity starting from"^^xsd:string ;
+  rdfs:label "Period of activity from"@en, "TaetigkeitszeitraumFrom"@de ;
+  rdfs:domain grfo:GraffitiSprayerCrew;
+  rdfs:range rdfs:Literal;
+  ns0:term_status "testing"^^xsd:string .
+  
+grfo:hasPeriodOfActivityTo
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Period of activity ending in"^^xsd:string ;
+  rdfs:label "Period of activity to"@en, "TaetigkeitszeitraumTo"@de ;
+  rdfs:domain grfo:GraffitiSprayerCrew;
+  rdfs:range rdfs:Literal;
+  ns0:term_status "testing"^^xsd:string .
+    
+grfo:hasDHashScore
+  rdfs:isDefinedBy grfo: ;
+  a rdf:Property, owl:ObjectProperty ;
+  rdfs:comment "Similarity score between graffiti images"^^xsd:string ;
+  rdfs:label "Has D Hash Score"@en;
+  rdfs:range xsd:integer;
+  ns0:term_status "testing"^^xsd:string .
